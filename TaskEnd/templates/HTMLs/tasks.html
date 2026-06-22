@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskEnd - Tasks</title>
+</head>
+<body>
+
+    <header>
+        <h1>TaskEnd</h1>
+        <p>Track your tasks. Complete your goals.</p>
+    </header>
+
+    <hr>
+
+    <main>
+
+        <!-- Create Task Section -->
+        <section>
+            <h2>Create Task</h2>
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <input
+                    type="text"
+                    name="task_title"
+                    placeholder="Enter a new task"
+                    required
+                >
+
+                <button type="submit">
+                    Create
+                </button>
+            </form>
+        </section>
+
+        <hr>
+
+        <!-- Task List Section -->
+        <section>
+            <h2>Task List</h2>
+
+            <ul>
+
+                <!-- Example Tasks -->
+
+                <li>
+                    Learn Django
+                    <button type="button">
+                        Complete
+                    </button>
+                </li>
+
+                <li>
+                    Learn SQLite
+                    <button type="button">
+                        Complete
+                    </button>
+                </li>
+
+                <li>
+                    Build TaskEnd
+                    <button type="button">
+                        Complete
+                    </button>
+                </li>
+
+            </ul>
+
+        </section>
+
+    </main>
+
+    <hr>
+
+    <footer>
+        <p>TaskEnd © 2026</p>
+    </footer>
+
+</body>
+</html>

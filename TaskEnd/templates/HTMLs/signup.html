@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+</head>
+<body>
+
+    <form action="{% url 'signup' %}" method="post">
+
+        {% csrf_token %}
+
+        <h1>Signup</h1>
+        <p>Enter your details. Your information is safe with us.</p>
+
+        <label for="username">Username</label>
+        <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="Enter your username"
+            required
+        >
+
+        <br><br>
+
+        <label for="email">Email</label>
+        <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter your email"
+            required
+        >
+
+        <br><br>
+
+        <label for="password">Password</label>
+        <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Enter your password"
+            minlength="8"
+            required
+        >
+
+        <br><br>
+
+        <p>Gender</p>
+
+        <input
+            type="radio"
+            id="male"
+            name="gender"
+            value="male"
+        >
+        <label for="male">Male</label>
+
+        <input
+            type="radio"
+            id="female"
+            name="gender"
+            value="female"
+        >
+        <label for="female">Female</label>
+
+        <input
+            type="radio"
+            id="prefer_not_to_say"
+            name="gender"
+            value="prefer_not_to_say"
+        >
+        <label for="prefer_not_to_say">
+            Prefer not to say
+        </label>
+
+        <br><br>
+
+        <div class="terms">
+            <input
+                type="checkbox"
+                id="terms"
+                name="terms"
+                required
+            >
+
+            <label for="terms">
+                I accept the Terms & Conditions and Privacy Policy
+            </label>
+        </div>
+
+        <br>
+
+        <button type="submit">
+            Sign Up
+        </button>
+
+    </form>
+
+    <div class="login">
+        <p>
+            Already a member?
+            <a href="{% url 'login' %}">
+                Login
+            </a>
+        </p>
+    </div>
+
+</body>
+</html>
