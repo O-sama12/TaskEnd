@@ -16,7 +16,7 @@
 
     <main>
 
-        <!-- Create Task Section -->
+        <!-- Create Task -->
         <section>
             <h2>Create Task</h2>
 
@@ -38,36 +38,37 @@
 
         <hr>
 
-        <!-- Task List Section -->
+        <!-- Task List -->
         <section>
             <h2>Task List</h2>
 
-            <ul>
+            {% if tasks %}
+                <ul>
 
-                <!-- Example Tasks -->
+                    {% for task in tasks %}
+                    <li>
 
-                <li>
-                    Learn Django
-                    <button type="button">
-                        Complete
-                    </button>
-                </li>
+                        {% if task.completed %}
+                            <s>{{ task.title }}</s>
+                        {% else %}
+                            {{ task.title }}
+                        {% endif %}
 
-                <li>
-                    Learn SQLite
-                    <button type="button">
-                        Complete
-                    </button>
-                </li>
+                        {% if not task.completed %}
+                            <a href="{% url 'complete_task' task.id %}"></a>
+                                <button type="button">Complete</button>
+                            </a>
+                        {% endif %}
+                        <a href="{% url 'delete_task' task.id %}">
+                            <button type="button">Delete</button>
+                        </a>
+                    </li>
+                    {% endfor %}
 
-                <li>
-                    Build TaskEnd
-                    <button type="button">
-                        Complete
-                    </button>
-                </li>
-
-            </ul>
+                </ul>
+            {% else %}
+                <p>No tasks yet. Create your first task.</p>
+            {% endif %}
 
         </section>
 
