@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from .models import Task
 # Create your views here.
@@ -63,3 +63,7 @@ def delete_task(request, task_id):
     task = Task.objects.get(id = task_id, owner = request.user)
     task.delete()
     return redirect("tasks")
+@login_required
+def logout_view(request):
+    logout(request)
+    return redirect("landing")
