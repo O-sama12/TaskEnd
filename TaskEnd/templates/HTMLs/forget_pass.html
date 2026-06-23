@@ -1,40 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <title>Forget Password</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Reset Password</title>
 </head>
 <body>
-    <h1>Forgot Password</h1>
 
-    <p>No worries. Enter your email to reset your password.</p>
+    <h1>Forgot Password?</h1>
 
-    <form action="/forgot-password" method="post">
+    <p>
+        Enter your email address and we'll send you a password reset link.
+    </p>
 
-    <label for="email">Email</label><br>
+    <form method="post">
+        {% csrf_token %}
 
-    <input
-        type="email"
-        id="email"
-        name="email"
-        placeholder="Enter your email"
-        required
-    >
+        {{ form.as_p }}
 
-    <br><br>
+        <button type="submit">
+            Send Reset Link
+        </button>
+    </form>
 
-    <button type="submit">
-        Send reset link
-    </button>
+    <br>
 
-</form>
+    <a href="{% url 'login' %}">
+        Back to Login
+    </a>
 
-<p>
-    Remembered your password?
-    <a href="{% url 'login' %}">Login</a>
-</p>
 </body>
 </html>

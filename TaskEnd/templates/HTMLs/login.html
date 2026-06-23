@@ -1,9 +1,14 @@
+{% load socialaccount %}
 <form action="{% url 'login' %}" method="post">
 
     {% csrf_token %}
 
     <h1 class="text-primary">Login</h1>
     <p>Welcome back!</p>
+
+    <a href="{% provider_login_url 'google' %}">
+        Continue with Google
+    </a>
 
     <label for="username">Username</label><br>
     <input
