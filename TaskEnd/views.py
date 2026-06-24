@@ -2,22 +2,28 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from django.db import IntegrityError
+from django.contrib import messages
 from .models import Task
 # Create your views here.
 def landing(request):
     return render(request, "HTMLs/index.html")
 def signup(request):
     if request.method == "POST":
-        username = request.POST["username"]
-        email = request.POST["email"]
-        password = request.POST["password"]
-        gender = request.POST.get("gender")
-        User.objects.create_user(
-            username=username,
-            email=email,
-            password=password,
-        )
-        return redirect("login")
+        try:
+            username = request.POST["username"]
+            email = request.POST["email"]
+            password = request.POST["password"]
+            gender = request.POST.get("gender")
+            User.objects.create_user(
+                username=username,
+                email=email,
+                password=password,
+            )
+            return redirect("login")
+        except IntegrityError:
+            messages.error(request, "Username already exists")
+            return redirect("signup")
     return render(request, "HTMLs/signup.html")
 def login_view(request):
     if request.method == "POST":
