@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from django.utils.timezone import now
 from django.db import IntegrityError
 from django.contrib import messages
 from .models import Task
@@ -57,7 +58,7 @@ def tasks(request):
     tasks = Task.objects.filter(
         owner=request.user
     )
-    return render(request, "HTMLs/tasks.html",{"tasks": tasks})
+    return render(request, "HTMLs/tasks.html",{"tasks": tasks, "now" : now()})
 @login_required
 def complete_task(request, task_id):
     task = Task.objects.get(id = task_id, owner = request.user)

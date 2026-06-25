@@ -1,87 +1,113 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TaskEnd - Tasks</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 </head>
+
 <body>
 
-    <header>
-        <h1>TaskEnd</h1>
-        <p>Track your tasks. Complete your goals.</p>
-    </header>
-        <a href="{% url 'logout' %}">
+    <div class="container mt-4">
+
+        <header>
+            <h1>TaskEnd</h1>
+            <p>Track your tasks. Complete your goals.</p>
+        </header>
+
+        <a href="{% url 'logout' %}" class="btn btn-sm btn-outline-danger mb-3">
             <button type="button">
                 Logout
             </button>
         </a>
-    <hr>
-
-    <main>
-        <!-- Create Task -->
-        <section>
-            <h2>Create Task</h2>
-
-            <form method="POST">
-                {% csrf_token %}
-
-                <input
-                    type="text"
-                    name="task_title"
-                    placeholder="Enter a new task"
-                    required
-                >
-
-                <button type="submit">
-                    Create
-                </button>
-            </form>
-        </section>
 
         <hr>
 
-        <!-- Task List -->
-        <section>
-            <h2>Task List</h2>
+        <main>
+            <!-- Create Task -->
+            <section>
+                <h2 class="mb-1">Create Task</h2>
 
-            {% if tasks %}
-                <ul>
+                <form method="POST" class="mb-3">
+                    {% csrf_token %}
 
-                    {% for task in tasks %}
-                    <li>
+                    <input type="text"
+                           name="task_title"
+                           class="form-control mb-2"
+                           placeholder="Enter a new task"
+                           required>
+                    <select name="priority" class="form-control mb-2">
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary w-100">
+                        Create
+                    </button>
+                </form>
+            </section>
 
-                        {% if task.completed %}
-                            <s>{{ task.title }}</s>
-                        {% else %}
-                            {{ task.title }}
-                        {% endif %}
+            <hr>
 
-                        {% if not task.completed %}
-                            <a href="{% url 'complete_task' task.id %}"></a>
-                                <button type="button">Complete</button>
-                            </a>
-                        {% endif %}
-                        <a href="{% url 'delete_task' task.id %}">
-                            <button type="button">Delete</button>
-                        </a>
-                    </li>
-                    {% endfor %}
+            <!-- Task List -->
+            <section>
+                <h2>Task List</h2>
 
-                </ul>
-            {% else %}
-                <p>No tasks yet. Create your first task.</p>
-            {% endif %}
+                {% if tasks %}
+                    <ul class="list-group">
 
-        </section>
+                        {% for task in tasks %}
+                        <li class="list-group-item">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <strong>
+                                        Task #{{ forloop.counter }} ({{ task.title }})
+                                    </strong>
+                                    <span class="badge bg-secondary">
+                                        {{ task.priority }}
+                                    </span>
+                                    <small class="text-muted d-block">
+                                        {{ task.created_at|date:"d/m/Y H:i A" }}
+                                    </small>
+                                </div>
+                                <div>
+                                    {% if not task.completed %}
+                                        <a href="{% url 'complete_task' task.id %}">
+                                            <button type="button" class="btn btn-success btn-sm">Complete</button>
+                                        </a>
+                                    {% endif %}
 
-    </main>
+                                    <a href="{% url 'delete_task' task.id %}">
+                                        <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                        {% endfor %}
 
-    <hr>
+                    </ul>
+                {% else %}
+                    <p>No tasks yet. Create your first task.</p>
+                {% endif %}
 
-    <footer>
-        <p>TaskEnd © 2026</p>
-    </footer>
+            </section>
+
+        </main>
+
+        <hr>
+
+        <footer>
+            <p>TaskEnd © 2026</p>
+        </footer>
+
+    </div>
+
+    <!-- Bootstrap JS (moved to correct place) -->
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 
 </body>
 </html>
