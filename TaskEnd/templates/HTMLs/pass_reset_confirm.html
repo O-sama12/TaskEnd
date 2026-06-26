@@ -1,31 +1,41 @@
+{% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Set New Password</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose New Password</title>
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 </head>
+
 <body>
 
-    <h1>Create New Password</h1>
+<div class="container py-5">
 
-    {% if validlink %}
+    <form method="post" class="mx-auto" style="max-width: 500px;">
 
-        <form method="post">
-            {% csrf_token %}
+        {% csrf_token %}
 
-            {{ form.as_p }}
+        <h1 class="mb-2">
+            Set a New Password
+        </h1>
 
-            <button type="submit">
-                Change Password
-            </button>
-        </form>
-
-    {% else %}
-
-        <p>
-            This password reset link is invalid or has expired.
+        <p class="text-muted mb-4">
+            Enter your new password below.
         </p>
 
-    {% endif %}
+        {{ form.as_p }}
+
+        <button type="submit" class="btn btn-primary w-100">
+            Update Password
+        </button>
+
+    </form>
+
+</div>
+
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 
 </body>
 </html>

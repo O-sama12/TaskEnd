@@ -1,44 +1,57 @@
+{% load static %}
 {% load socialaccount %}
-<form action="{% url 'login' %}" method="post">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+<body>
+    <div class="container py-5">
+        <form action="{% url 'login' %}" method="post" class="mx-auto" style="max-width: 500px;">
 
-    {% csrf_token %}
+            {% csrf_token %}
 
-    <h1 class="text-primary">Login</h1>
-    <p>Welcome back!</p>
+            <h1 class="mb-2">Login</h1>
+            <p class="text-muted mb-4">Welcome back!</p>
 
-    <a href="{% provider_login_url 'google' %}">
-        Continue with Google
-    </a>
+            <a href="{% provider_login_url 'google' %}" class="btn btn-outline-dark w-100 mb-4">
+                Continue with Google
+            </a>
 
-    <label for="username">Username</label><br>
-    <input
-        type="text"
-        id="username"
-        name="username"
-        placeholder="Enter your username"
-        required
-    >
+            <label for="username" class="form-label">Username</label>
+            <input class="form-control" type="text" id="username" name="username" placeholder="Enter your username" required>
 
-    <br><br>
+            <br>
 
-    <label for="password">Password</label><br>
-    <input
-        type="password"
-        id="password"
-        name="password"
-        placeholder="Enter your password"
-        minlength="8"
-        required
-    >
+            <label for="password" class="form-label">Password</label>
+            <input class="form-control" type="password" id="password" name="password" placeholder="Enter your password" minlength="8" required>
 
-    <br><br>
+            <br>
 
-    <button type="submit">
-        Login
-    </button>
+            <div class="d-flex justify-content-end mt-2 mb-4">
 
-    <a href="{% url 'password_reset' %}">
-        Forget Password
-    </a>
+                <a href="{% url 'password_reset' %}" class="text-decoration-none">
+                    Forgot Password?
+                </a>
 
-</form>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">
+                Login
+            </button>
+
+            <p class="text-center mt-4 mb-0">
+                Don't have an account?
+                <a href="{% url 'signup' %}">
+                    Sign Up
+                </a>
+            </p>
+
+        </form>
+    </div>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

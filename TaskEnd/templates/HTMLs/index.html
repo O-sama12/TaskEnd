@@ -1,31 +1,36 @@
+{%load static%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VoxForge: Where Voices are shaped not silenced</title>
+    <title>TaskEnd: An app for self improvement.</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 </head>
 <body>
-    <header>
-        <div class="brand">
-            <h1>TaskEnd</h1>
-            <p>An app for self improvement.</p>
-        </div>
-    </header>
-    <main>
-        <section class="purpose">
-            <p>TaskEnd is built for Self improvement.</p>
-        <p>You can improve yourself if you have tungsten mentality and courage to never ever give up.</p>
-        </section>
-        <section class="cta">
-            <button class="btn-primary" type="button"onclick="window.location.href='{% url 'signup' %}'">Count me in</button>
-            <button class="btn-secondary" type="button" onclick="window.close()">Nah I'm good</button>
-        </section>
-    </main>
-    <footer>
-        <div class="credits">
-            <p>Created by Alexei Petersky, All Rights Reserved</p>
-        </div> 
-    </footer>
+    <div class="container py-5">
+        <header class="text-center mb-5">
+            <div class="brand">
+                <h1 class="display-4 fw-bold">TaskEnd</h1>
+                <p class="lead text-muted">An app for self improvement.</p>
+            </div>
+        </header>
+        <main>
+            <section class="text-center mb-5">
+                <p class="fs-5">TaskEnd is built for Self improvement.</p>
+                <p class="text-muted">You can improve yourself if you have tungsten mentality and courage to never ever give up.</p>
+            </section>
+            <section class="cta text-center mb-5">
+                <button class="btn btn-primary me-2" type="button"onclick="window.location.href='{% url 'signup' %}'">Count me in</button>
+                <button class="btn btn-outline-secondary" type="button" onclick="window.close()">Nah I'm good</button>
+            </section>
+        </main>
+        <footer class="text-center text-muted border-top pt-3">
+            <div class="credits">
+                <p class="mb-0">Created by Alexei Petersky, All Rights Reserved</p>
+            </div> 
+        </footer>
+    </div>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 </body>
 </html>

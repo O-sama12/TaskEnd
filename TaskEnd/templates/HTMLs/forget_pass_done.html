@@ -1,20 +1,37 @@
+{% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Email Sent</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Reset Sent</title>
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 </head>
+
 <body>
 
-    <h1>Check Your Email</h1>
+<div class="container py-5">
 
-    <p>
-        If an account exists with that email address,
-        we've sent a password reset link.
-    </p>
+    <div class="mx-auto text-center" style="max-width: 500px;">
 
-    <a href="{% url 'login' %}">
-        Return to Login
-    </a>
+        <h1 class="mb-3">
+            Check Your Inbox
+        </h1>
+
+        <p class="text-muted mb-4">
+            We've emailed you a password reset link. If an account exists for the email you entered, you should receive it shortly.
+        </p>
+
+        <a href="{% url 'login' %}" class="btn btn-primary">
+            Back to Login
+        </a>
+
+    </div>
+
+</div>
+
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 
 </body>
 </html>
