@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import landing, signup, login_view, forget_pass, tasks, complete_task, delete_task, logout_view, TaskListAPIView
+from .views import landing, signup, login_view, forget_pass, tasks, complete_task, delete_task, logout_view, TaskListAPIView, TaskDetailAPIView
 
 urlpatterns = [
     path('', landing, name='landing'),
@@ -12,4 +12,5 @@ urlpatterns = [
     path('logout/', logout_view, name='logout'),
     path("accounts/", include("allauth.urls")),
     path("api/tasks/", TaskListAPIView.as_view(), name= "api_tasks"),
+    path("api/tasks/<int:task_id>/", TaskDetailAPIView.as_view(), name = "api_task_detail"),
 ]
