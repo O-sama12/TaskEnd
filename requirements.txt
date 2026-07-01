@@ -6,7 +6,9 @@ cryptography==49.0.0
 Django==6.0.6
 django-allauth==65.18.0
 djangorestframework==3.17.1
+gunicorn==26.0.0
 idna==3.18
+packaging==26.2
 psycopg==3.3.4
 psycopg-binary==3.3.4
 pycparser==3.0
