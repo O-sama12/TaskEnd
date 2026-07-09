@@ -29,7 +29,7 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = [os.getenv("ALLOWED_HOSTS","127.0.0.1,localhost").split(",")]
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
 
 
 # Application definition
@@ -132,10 +132,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = "/static/"
-STATIC_ROOT = "/static"
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 MEDIA_URL = "/media/"
-MEDIA_ROOT = "/media"
+MEDIA_ROOT = BASE_DIR / "media"
 
 SITE_ID = 1
 
@@ -177,3 +177,4 @@ CACHES = {
     }
 }
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+SOCIALACCOUNT_RAISE_AUTHENTICATION_ERROR = True

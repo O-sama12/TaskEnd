@@ -5,15 +5,8 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("accounts/", include("allauth.urls")),
     path('', include('TaskEnd.urls')),
-
-    path(
-        "password_reset/",
-        auth_views.PasswordResetView.as_view(
-            template_name="HTMLs/forget_pass.html"
-        ),
-        name="password_reset"
-    ),
 
     path(
         "password_reset/done/",
