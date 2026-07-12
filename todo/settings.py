@@ -137,7 +137,7 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
-SITE_ID = int(os.getenv("SITE_ID", "1"))
+SITE_ID = 2
 
 AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
@@ -153,7 +153,6 @@ EMAIL_USE_TLS = True
 
 EMAIL_HOST_USER = os.getenv('MY_EMAIL')
 EMAIL_HOST_PASSWORD = os.getenv('MY_PASS')
-SITE_ID = 1
 
 SOCIALACCOUNT_PROVIDERS = {
     "google": {
