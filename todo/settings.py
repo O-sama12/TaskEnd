@@ -172,7 +172,7 @@ CSRF_TRUSTED_ORIGINS = [
 CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
-        "LOCATION": "taskend-cache",
+        "LOCATION": os.getenv("REDIS_URL"),
     }
 }
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER

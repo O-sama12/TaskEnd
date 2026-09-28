@@ -14,6 +14,11 @@ services:
     ports:
       - "5433:5432"
 
+  redis:
+    image: redis:7-alpine
+    container_name: taskend_redis
+    restart: unless-stopped
+
   web:
     build: .
     container_name: taskend_web
@@ -30,6 +35,7 @@ services:
 
     depends_on:
       - db
+      - redis
 
     environment:
       DB_NAME: ${DB_NAME}
@@ -37,6 +43,7 @@ services:
       DB_PASS: ${DB_PASS}
       DB_HOST: ${DB_HOST}
       DB_PORT: 5432
+      REDIS_URL: redis://redis:6379
 
   nginx:
     image: nginx:latest
