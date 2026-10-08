@@ -18,6 +18,8 @@ services:
     image: redis:7-alpine
     container_name: taskend_redis
     restart: unless-stopped
+    ports:
+      - "6379:6379"
 
   web:
     build: .

@@ -1,24 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Password Reset Email</title>
-</head>
-<body>
-    Hello {{ user.get_username }},
+<p>Hello {{ user.get_username }},</p>
 
-    You're receiving this email because you requested a password reset for your TaskEnd account.
+<p>
+    You're receiving this email because you requested a password reset
+    for your TaskEnd account.
+</p>
 
-    Please click the link below to choose a new password:
+<p>Click the button below to choose a new password:</p>
 
-    {{ protocol }}://{{ domain }}{% url 'password_reset_confirm' uidb64=uid token=token %}
+<p>
+    <a href="{{ protocol }}://{{ domain }}{% url 'password_reset_confirm' uidb64=uid token=token %}">
+        Reset your password
+    </a>
+</p>
 
-    If clicking the link doesn't work, copy and paste it into your browser.
+<p>
+    If you didn't request a password reset, you can safely ignore this email.
+    Your account will remain secure.
+</p>
 
-    If you didn't request a password reset, you can safely ignore this email. Your account will remain secure.
-
-    Regards,
+<p>
+    Regards,<br>
     TaskEnd Team
-</body>
-</html>
+</p>

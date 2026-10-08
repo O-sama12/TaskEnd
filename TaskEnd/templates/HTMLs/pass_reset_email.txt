@@ -1,0 +1,14 @@
+Hello {{ user.get_username }},
+
+You're receiving this email because you requested a password reset for your TaskEnd account.
+
+Please click the link below to choose a new password:
+
+{{ protocol }}://{{ domain }}{% url 'password_reset_confirm' uidb64=uid token=token %}
+
+If clicking the link doesn't work, copy and paste it into your browser.
+
+If you didn't request this password reset, you can safely ignore this email. Your account will remain secure.
+
+Regards,
+TaskEnd Team

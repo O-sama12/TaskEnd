@@ -35,10 +35,18 @@ urlpatterns = [
         "password_reset/",
         auth_views.PasswordResetView.as_view(
             template_name="HTMLs/forget_pass.html",
-            email_template_name="HTMLs/pass_reset_email.html",
+            email_template_name="HTMLs/pass_reset_email.txt",
+            html_email_template_name="HTMLs/pass_reset_email.html",
             subject_template_name="HTMLs/pass_reset_subject.txt",
         ),
         name="password_reset",
+    ),
+    path(
+        "reset/done/",
+        auth_views.PasswordResetCompleteView.as_view(
+            template_name="HTMLs/pass_reset_complete.html"
+        ),
+        name="password_reset_complete"
     ),
 ]
 handler403 = "TaskEnd.views.custom_403"
